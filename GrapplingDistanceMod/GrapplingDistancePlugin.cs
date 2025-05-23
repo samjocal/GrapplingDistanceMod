@@ -10,6 +10,9 @@ using HarmonyLib;
 
 namespace GrapplingDistanceMod
 {
+    [BepInPlugin(MyGuid, PluginName, VersionString)]
+    [BepInDependency("com.snmodding.nautilus")] // marks Nautilus as a dependency for this mod
+
     public class GrapplingDistancePlugin : BaseUnityPlugin
     {
         private const string MyGuid = "com.samjocal.grapplingdistancemod";
@@ -18,12 +21,12 @@ namespace GrapplingDistanceMod
 
         private static readonly Harmony Harmony = new Harmony(MyGuid);
 
-        private static ManualLogSource Log;
+        public static ManualLogSource Log;
 
         private void Awake()
         {
             Harmony.PatchAll();
-            Logger.LogInfo(PluginName + " " +  VersionString + " loaded.");
+            Logger.LogInfo(PluginName + " " + VersionString + " loaded.");
             Log = Logger;
         }
     }
