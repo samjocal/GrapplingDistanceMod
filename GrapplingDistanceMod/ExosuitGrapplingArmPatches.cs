@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GrapplingDistanceMod;
+using Samjocal.GrapplingDistanceMod;
 using HarmonyLib;
 
 namespace Samjocal.GrapplingDistanceMod
@@ -16,11 +16,15 @@ namespace Samjocal.GrapplingDistanceMod
         [HarmonyPrefix]
         public static bool FixedUpdate_Prefix(ExosuitGrapplingArm __instance)
         {
-            if(__instance.hook.flying)
+            if (__instance.hook.attached || (__instance.rope && __instance.rope.isHooked))
             {
-                if ((__instance.hook.transform.position - __instance.front.position).magnitude < 105f)
+                return true;
+            } 
+            else if (__instance.hook.flying)
+            {
+                if ((__instance.hook.transform.position - __instance.front.position).magnitude < GrapplingDistancePlugin.ModOptions.MaxDistance)
                 {
-                    GrapplingDistancePlugin.Log.LogInfo($"Hook Distance less than 500f, FixedUpdate method bypassed.");
+                    GrapplingDistancePlugin.Log.LogInfo($"Hook Distance less than 105f, FixedUpdate method bypassed.");
                     return false;
                 }
             }

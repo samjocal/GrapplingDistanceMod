@@ -68,8 +68,8 @@
   <ItemGroup>
     <Compile Include="ExosuitGrapplingArmPatches.cs" />
     <Compile Include="GrapplingDistancePlugin.cs" />
+    <Compile Include="ModOptions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VFXGrapplingRopePatches.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
