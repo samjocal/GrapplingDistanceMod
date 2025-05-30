@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 using BepInEx;
 using BepInEx.Logging;
 using HarmonyLib;
+using Nautilus.Handlers;
+using Nautilus.Options;
+using static OVRHaptics;
 
-namespace GrapplingDistanceMod
+namespace Samjocal.GrapplingDistanceMod
 {
     [BepInPlugin(MyGuid, PluginName, VersionString)]
     [BepInDependency("com.snmodding.nautilus")] // marks Nautilus as a dependency for this mod
@@ -23,8 +26,11 @@ namespace GrapplingDistanceMod
 
         public static ManualLogSource Log;
 
+        public static ModOptions ModOptions;
+
         private void Awake()
         {
+            ModOptions = OptionsPanelHandler.RegisterModOptions<ModOptions>();
             Harmony.PatchAll();
             Logger.LogInfo(PluginName + " " + VersionString + " loaded.");
             Log = Logger;
