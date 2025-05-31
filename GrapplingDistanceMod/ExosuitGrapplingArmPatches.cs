@@ -24,12 +24,9 @@ namespace Samjocal.GrapplingDistanceMod
             {
                 if ((__instance.hook.transform.position - __instance.front.position).magnitude < GrapplingDistancePlugin.ModOptions.MaxDistance)
                 {
-                    GrapplingDistancePlugin.Log.LogInfo($"Hook Distance less than 105f, FixedUpdate method bypassed.");
                     return false;
                 }
             }
-            GrapplingDistancePlugin.Log.LogInfo($"Hook Distance greater than 500f, FixedUpdate method called.");
-
             return true;
         }
         
